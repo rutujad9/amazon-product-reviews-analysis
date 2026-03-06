@@ -13,6 +13,9 @@ A **data mining and natural language processing (NLP)** project that analyzes Am
 ![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
 ![NLP](https://img.shields.io/badge/NLP-Text%20Mining-green.svg)
 ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Scikit--Learn-orange.svg)
+![Topic Modeling](https://img.shields.io/badge/Topic%20Modeling-LDA-blueviolet)
+![Clustering](https://img.shields.io/badge/Clustering-KMeans-yellow)
+![Dataset](https://img.shields.io/badge/Dataset-Amazon%20Reviews-lightgrey)
 ![Project](https://img.shields.io/badge/Project-Academic-important.svg)
 
 ---
