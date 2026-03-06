@@ -1,5 +1,7 @@
 # Amazon Product Reviews Analysis
 
+A machine learning and natural language processing project that analyzes over **500,000 Amazon product reviews** to predict sentiment, discover hidden review topics, and detect inconsistencies between ratings and written feedback.
+
 A **data mining and natural language processing (NLP)** project that analyzes Amazon product reviews to:
 
 - predict sentiment from review text
@@ -36,7 +38,7 @@ The project investigates three key questions:
 
 ### 1️⃣ Can sentiment be predicted from review text?
 
-Using **TF-IDF features** and a **Logistic Regression classifier**, the project evaluates whether textual reviews can accurately predict review sentiment.
+Using **TF-IDF features** and a **Logistic Regression classifier**, the model predicts review sentiment with an accuracy of **84.68%** on the test dataset.
 
 ### 2️⃣ What topics emerge in customer reviews?
 
@@ -71,20 +73,20 @@ Main fields used:
 - `Summary`
 - `Score`
 
-The dataset contains **customer reviews, product IDs, and rating scores**.
+The dataset contains **500,000+ Amazon product reviews** including review text, product IDs, and rating scores.
 
 ---
 
 ## Tech Stack
 
-- Python
-- pandas
-- numpy
-- scikit-learn
-- nltk
-- gensim
-- matplotlib
-- seaborn
+- **Python**
+- **pandas**
+- **NumPy**
+- **scikit-learn**
+- **NLTK**
+- **Gensim**
+- **Matplotlib** 
+- **Seaborn**
 
 ---
 
@@ -137,15 +139,18 @@ The following machine learning and NLP techniques were applied:
 
 ### Topic Discovery
 
-Two complementary approaches were used:
+Two complementary approaches were used to uncover themes in customer reviews.
 
 **LDA Topic Modeling**
 
-- identifies groups of words frequently appearing together
+- extracted **4 major topics** based on word co-occurrence patterns
+- identifies groups of words frequently appearing together in review summaries
 
-**Word2Vec + KMeans**
+**Word2Vec + KMeans Clustering**
 
-- clusters reviews based on semantic similarity
+- reviews converted into **100-dimensional word embeddings**
+- reviews grouped into **4 semantic clusters**
+- clusters visualized using **t-SNE and PCA**
 
 ### Rating–Sentiment Discrepancy
 
@@ -157,17 +162,22 @@ discrepancy = |sentiment_score - rating_score|
 
 This highlights products where **text sentiment does not match the star rating**.
 
+The analysis identifies the **top products with the highest sentiment-rating mismatch**, revealing cases where customer written feedback contradicts the assigned star rating.
+
+
 ---
 
 ## Key Findings
 
-- Logistic Regression trained on TF-IDF features achieved **84.68% accuracy** on the test dataset, demonstrating that review text can reliably predict sentiment.
+- **Sentiment Prediction:** Logistic Regression trained on TF-IDF features achieved **84.68% accuracy** on the test dataset.
 
-- Customer reviews reveal **clear topic clusters** related to product categories using LDA and Word2Vec clustering.
+- **Topic Discovery:** LDA and Word2Vec + KMeans clustering revealed **4 interpretable customer review topics** representing common product categories and usage patterns.
 
-- Some products exhibit **large sentiment–rating discrepancies**, indicating inconsistent feedback between review text and star ratings.
+- **Customer Feedback Patterns:** Topic clustering highlights meaningful groupings in customer reviews, demonstrating the usefulness of **unsupervised NLP techniques**.
 
-- **t-SNE and PCA visualizations** help reveal structure in customer review topics.
+- **Rating–Sentiment Discrepancy:** Several products show **significant mismatch between written sentiment and star ratings**, indicating potential inconsistencies in customer feedback.
+
+- **Visualization Insights:** **t-SNE and PCA visualizations** reveal clear structure in review topic clusters.
 
 ---
 
