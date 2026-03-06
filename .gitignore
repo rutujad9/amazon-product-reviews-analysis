@@ -1,0 +1,7 @@
+# don't upload big/private stuff
+data/
+
+# junk files
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
