@@ -1,148 +1,252 @@
 # Amazon Product Reviews Analysis
 
+A **data mining and natural language processing (NLP)** project that analyzes Amazon product reviews to:
+
+- predict sentiment from review text
+- discover underlying customer review topics
+- identify mismatches between written sentiment and star ratings
+
+---
+
 ![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
 ![NLP](https://img.shields.io/badge/NLP-Text%20Mining-green.svg)
 ![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Scikit--Learn-orange.svg)
-![Academic Project](https://img.shields.io/badge/Project-Academic-important.svg)
-![License](https://img.shields.io/badge/License-Academic-lightgrey.svg)
+![Project](https://img.shields.io/badge/Project-Academic-important.svg)
 
+---
 
 ## Project Overview
-This project analyzes Amazon product reviews using advanced data mining and natural language processing techniques. The goal is to extract meaningful insights from customer review text by predicting sentiment, discovering hidden topics, and identifying inconsistencies between star ratings and textual sentiment.
 
-The project was developed as part of the **Advanced Data Mining** course under the supervision of **Prof. Dennis Mendoza**.
+Customer reviews contain valuable insights about products.  
+This project applies **machine learning and NLP techniques** to extract meaningful information from Amazon product reviews.
+
+The analysis focuses on:
+
+- **Sentiment prediction** from review text
+- **Topic discovery** in customer feedback
+- **Rating–sentiment discrepancy detection**
+
+These insights help identify patterns in customer feedback and highlight products with inconsistent ratings.
 
 ---
 
 ## Research Questions
-1. Can sentiment be predicted from review text?
-2. What topics emerge in customer reviews?
-3. Which products have the highest discrepancy between star ratings and review sentiment?
+
+The project investigates three key questions:
+
+### 1️⃣ Can sentiment be predicted from review text?
+
+Using **TF-IDF features** and a **Logistic Regression classifier**, the project evaluates whether textual reviews can accurately predict review sentiment.
+
+### 2️⃣ What topics emerge in customer reviews?
+
+Two topic discovery approaches are used:
+
+- **Latent Dirichlet Allocation (LDA)**
+- **Word2Vec embeddings + KMeans clustering**
+
+These methods uncover common themes such as product categories and usage contexts.
+
+### 3️⃣ Which products show mismatch between rating and sentiment?
+
+Using **VADER sentiment analysis**, the project compares
+
+```
+written sentiment vs star rating
+```
+
+to identify products with **inconsistent feedback**.
 
 ---
 
 ## Dataset
-- **Source:** Kaggle – Amazon Product Reviews Dataset
-- **Main Fields Used:**
-  - `ProductId`
-  - `Summary`
-  - `Score`
-- Reviews with missing summaries were removed.
-- Duplicate entries were filtered out.
+
+Dataset: **Amazon Product Reviews dataset (Kaggle)**
+
+https://www.kaggle.com/datasets/jillanisofttech/amazon-product-reviews
+
+Main fields used:
+
+- `ProductId`
+- `Summary`
+- `Score`
+
+The dataset contains **customer reviews, product IDs, and rating scores**.
+
+---
+
+## Tech Stack
+
+- Python
+- pandas
+- numpy
+- scikit-learn
+- nltk
+- gensim
+- matplotlib
+- seaborn
 
 ---
 
 ## Project Structure
+
 ```
-├── data-mining.ipynb   # Main notebook with full analysis
-├── README.md           # Project documentation
+amazon-product-reviews/
+│
+├── notebooks/
+│   └── data-mining.ipynb
+├── images/
+├── data/
+├── README.md
+├── requirements.txt
+└── .gitignore
 ```
 
 ---
 
-## Methodology
+## Methods Used
 
-### 1. Data Preprocessing
-- Text cleaning: lowercasing, removing HTML tags, punctuation, and non-alphabetic characters
-- Removal of English and domain-specific stopwords
-- Creation of a cleaned text column (`clean_summary`)
+The following machine learning and NLP techniques were applied:
 
-### 2. Sentiment Labeling
-Star ratings were mapped to sentiment labels:
-- Rating ≥ 4 → Positive
-- Rating = 3 → Neutral
-- Rating ≤ 2 → Negative
-
----
-
-## Sentiment Prediction (Research Question 1)
-- **Feature Extraction:** TF-IDF vectorization
-- **Model:** Logistic Regression
-- **Train-Test Split:** 80% training, 20% testing
-- **Evaluation Metrics:** Precision, Recall, F1-score
-
-Result: The model achieved good performance, showing that review text can effectively predict sentiment.
+- **TF-IDF vectorization**
+- **Logistic Regression sentiment classification**
+- **Latent Dirichlet Allocation (LDA)**
+- **Word2Vec embeddings**
+- **KMeans clustering**
+- **VADER sentiment analysis**
+- **t-SNE visualization**
+- **PCA visualization**
 
 ---
 
-## Topic Modeling (Research Question 2)
-Two different approaches were used:
+## Analysis Workflow
 
-### Approach 1: Latent Dirichlet Allocation (LDA)
-- Applied on a document-term matrix using CountVectorizer
-- Extracted 4 latent topics based on word co-occurrence
-- Topics interpreted using top keywords
+### Data Preprocessing
 
-### Approach 2: Word2Vec + KMeans
-- Word2Vec embeddings trained on review summaries
-- Review-level vectors created by averaging word embeddings
-- KMeans clustering (4 clusters)
-- Topics identified and labeled manually
-- Visualized using t-SNE and PCA
+- removed missing summaries
+- handled duplicate reviews
+- cleaned text (HTML removal, punctuation removal)
+- applied stopword filtering
+
+### Sentiment Prediction
+
+- converted ratings into **sentiment labels**
+- extracted features using **TF-IDF**
+- trained **Logistic Regression classifier**
+- evaluated predictions using **classification metrics**
+
+### Topic Discovery
+
+Two complementary approaches were used:
+
+**LDA Topic Modeling**
+
+- identifies groups of words frequently appearing together
+
+**Word2Vec + KMeans**
+
+- clusters reviews based on semantic similarity
+
+### Rating–Sentiment Discrepancy
+
+Using **VADER sentiment scores**, the project calculates:
+
+```
+discrepancy = |sentiment_score - rating_score|
+```
+
+This highlights products where **text sentiment does not match the star rating**.
 
 ---
 
-## Rating–Sentiment Discrepancy Analysis (Research Question 3)
-- Sentiment scores computed using VADER sentiment analysis
-- Ratings mapped to numerical sentiment values
-- Discrepancy calculated as the absolute difference between rating score and sentiment score
-- Average discrepancy computed per product
+## Key Findings
 
-This analysis highlights products with inconsistent customer feedback.
+- Logistic Regression trained on TF-IDF features achieved **84.68% accuracy** on the test dataset, demonstrating that review text can reliably predict sentiment.
 
----
+- Customer reviews reveal **clear topic clusters** related to product categories using LDA and Word2Vec clustering.
 
-## Visualization
-- Rating distribution (bar chart & pie chart)
-- Top words in positive vs negative reviews
-- Topic visualizations using t-SNE and PCA
-- Boxplots for rating–sentiment discrepancy
+- Some products exhibit **large sentiment–rating discrepancies**, indicating inconsistent feedback between review text and star ratings.
 
----
-
-## Tools & Technologies
-- **Programming Language:** Python
-- **Libraries:**
-  - pandas, numpy
-  - scikit-learn
-  - matplotlib, seaborn
-  - nltk, gensim
+- **t-SNE and PCA visualizations** help reveal structure in customer review topics.
 
 ---
 
 ## How to Run
-1. Clone the repository:
-   ```bash
-   git clone https://gitlab.rlp.net/adam_ws_2526/amazonreviews_rutuja.git
-   ```
-2. Open the project in any IDE.
 
-3. Run `data-mining.ipynb` cell by cell.
+Clone the repository:
+
+```bash
+git clone https://github.com/rutujad9/amazon-product-reviews-analysis.git
+cd amazon-product-reviews-analysis
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Download the dataset from Kaggle and place:
+
+```
+Reviews.csv
+```
+
+inside the **data/** folder.
+
+Open the notebook:
+
+```bash
+jupyter notebook
+```
+
+Run:
+
+```
+notebooks/data-mining.ipynb
+```
 
 ---
 
-## Results Summary
-- Sentiment can be reliably predicted from review text
-- Clear and interpretable topics emerge from customer reviews
-- Certain products show strong mismatches between ratings and textual sentiment
+## Results Preview
+
+### Rating Distribution
+![Rating Distribution](images/rating-distribution.png)
+
+### Topic Clusters using t-SNE
+![t-SNE Topic Clusters](images/tsne-topics.png)
+
+### Rating–Sentiment Discrepancy
+![Rating–Sentiment Discrepancy](images/discrepancy-boxplot.png)
 
 ---
 
-## Future Work
-- Apply transformer-based models (BERT, RoBERTa) for sentiment analysis
-- Analyze temporal trends in reviews
-- Extend topic modeling to include neutral and negative reviews
+## Future Improvements
+
+- apply **transformer-based sentiment models (BERT)**
+- experiment with additional clustering algorithms
+- analyze **full review text instead of summary only**
+- build an **interactive dashboard** for product insights
 
 ---
 
 ## Author
-**Rutuja Deshmukh**  
-MSc Informatik  
-Advanced Data Mining  
-TH Bingen
+
+Rutuja Deshmukh  
+MSc Informatik — Germany
 
 ---
 
 ## License
-This project is intended for academic use only.
+
+This project is provided for **educational and portfolio purposes**.
+
+The dataset belongs to the original **Kaggle source**.
 
