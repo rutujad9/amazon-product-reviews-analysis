@@ -252,7 +252,8 @@ notebooks/data-mining.ipynb
 
 ## Author
 
-Rutuja Deshmukh  
+**Rutuja D** 
+
 MSc Informatik — Germany
 
 ---
